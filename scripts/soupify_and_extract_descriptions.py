@@ -3,7 +3,7 @@ import json
 import requests
 from bs4 import BeautifulSoup
 
-def get_dataset_description(dataset_url):
+def soupify_and_extract_descriptions(dataset_url):
 
     """ scrapes kaggle page for dataset description and name
         input: string (dataset_url)
@@ -35,6 +35,6 @@ def get_dataset_description(dataset_url):
 if __name__ == "__main__":
     dataset_url = sys.argv[1] # this let's us give the script a url as input from the command line
     dataset_name = dataset_url.rsplit("/",1)[-1]
-    description_d = get_dataset_description(dataset_url)
+    description_d = soupify_and_extract_descriptions(dataset_url)
     with open(f"{dataset_name}.json","w") as j:
         json.dump(description_d,j)
