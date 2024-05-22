@@ -20,6 +20,7 @@ we'll embed "all" the descriptions and store them. there are lots of them, so we
 
 - filtering out junk descriptions (too short, duplicated, etc.)
 - storing them - could we save them as a numpy array? yes but we want to explore better options
+- before we start embedding, we should cost it out to avoid being surprised by the open ai bill.
 
 once we have created and organized embeddings, we can work on the user interface.
 
