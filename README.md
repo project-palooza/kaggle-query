@@ -6,7 +6,18 @@ make it cool and interesting to find a dataset for my next data project
 
 ### notes
 
-current state - May 22 24
+current state - May 31 24
+
+we now have lots of dataset descriptions embedded.
+
+we can proceed to build functionality that will allow users to 
+interact with the system.
+
+there are frameworks for building chat interfaces. I am aware of at least two - the langchain framework, and the OAI assistants API.
+
+we can look at these, and we can also see how far we get designing our own framework.
+
+previous state - May 22 24
 
 last week we tested the following idea:
 
