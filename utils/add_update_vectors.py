@@ -1,6 +1,5 @@
-from get_embedding import openai_ef
+from get_collections import get_kaggle_collections
 import pandas as pd
-import chromadb
 from time import sleep
 
 df = pd.read_csv('../csvs/kaggle_datasets_for_chroma.csv')
@@ -10,11 +9,7 @@ df = df.head(30_000)
 # (to avoid rate limits)
 subsets = [df[i:i+1500] for i in range(0, df.shape[0], 1500)]
 
-client = chromadb.PersistentClient(path="../db")
-
-collection = client.get_or_create_collection("kaggle",
-                                             embedding_function=openai_ef,
-                                             metadata={"hnsw:space": "cosine"})
+collection, _ = get_kaggle_collections()
 
 metadata = ['Title','Subtitle','TotalVotes','TotalDownloads','TotalUncompressedBytes']
 for subset in subsets:

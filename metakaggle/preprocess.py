@@ -11,7 +11,7 @@ def filter_long_descriptions(df,embedding_encoding = "cl100k_base",max_tokens = 
 def kaggle_datasets_for_chroma(cost_per_million_tokens = .02):
 
     # title, subtitle, size, description
-    df = pd.read_csv('/Users/arad/repos/pp_kaggle_query/csvs/DatasetVersions.csv')
+    df = pd.read_csv('../csvs/DatasetVersions.csv')
     df = df.loc[~df['Description'].isna(),]
     df['CreationDate'] = pd.to_datetime(df['CreationDate'])
     df.sort_values(by = 'CreationDate',inplace = True,ascending = False)
@@ -20,14 +20,14 @@ def kaggle_datasets_for_chroma(cost_per_million_tokens = .02):
     df = df[keep_columns]
 
     # votes, downloads, file type
-    ddf = pd.read_csv('/Users/arad/repos/pp_kaggle_query/csvs/Datasets.csv')
+    ddf = pd.read_csv('../csvs/Datasets.csv')
     ddf = ddf[['Id','TotalVotes','TotalDownloads']]
 
     df = pd.merge(df,ddf,left_on = 'DatasetId',right_on = 'Id',how = 'left')
 
     # tags
-    tddf = pd.read_csv('/Users/arad/repos/pp_kaggle_query/csvs/DatasetTags.csv')
-    tdf = pd.read_csv('/Users/arad/repos/pp_kaggle_query/csvs/Tags.csv')
+    tddf = pd.read_csv('../csvs/DatasetTags.csv')
+    tdf = pd.read_csv('../csvs/Tags.csv')
 
     tddf = pd.merge(tddf,tdf,left_on='TagId',right_on = 'Id')
     tddf.loc[tddf['Description'].isna(),'Description'] = ''
@@ -40,7 +40,7 @@ def kaggle_datasets_for_chroma(cost_per_million_tokens = .02):
 
     df = filter_long_descriptions(df)
 
-    df.to_csv('/Users/arad/repos/pp_kaggle_query/csvs/kaggle_datasets_for_chroma.csv',index = False)
+    df.to_csv('../csvs/kaggle_datasets_for_chroma.csv',index = False)
 
     print(f"total cost to embed: ${(df['n_tokens'].sum()/1_000_000)*cost_per_million_tokens}")
 
