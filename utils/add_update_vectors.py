@@ -1,4 +1,4 @@
-from .get_collections import get_kaggle_collections
+from get_collections import get_kaggle_collections
 import pandas as pd
 from time import sleep
 

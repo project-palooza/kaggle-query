@@ -1,4 +1,4 @@
-from .get_collections import get_kaggle_collections
+from get_collections import get_kaggle_collections
 import pandas as pd
 import uuid
 
@@ -38,6 +38,7 @@ def reply_to_user(metadata):
 def interface(query):
     embedding = embed_user_query(query)
     _, metadata = find_datasets(embedding)
+    print(metadata)
     reply = reply_to_user(metadata)
     print(reply)
     return reply

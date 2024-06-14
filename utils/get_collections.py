@@ -1,4 +1,4 @@
-from .get_embedding import openai_ef
+from get_embedding import openai_ef
 import chromadb
 
 client = chromadb.PersistentClient(path="../db")
